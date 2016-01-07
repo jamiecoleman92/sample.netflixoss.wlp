@@ -17,10 +17,10 @@ buildscript {
     }
 	
     dependencies {
-        classpath 'net.wasdev.wlp.gradle.plugins:liberty-gradle-plugin:1.0-SNAPSHOT'
-        classpath fileTree(dir: wlpDir+'/bin/tools', include: 'ws-server.jar')
-        classpath fileTree(dir: wlpDir+'/dev/spi/ibm', include: '*.jar')
-        classpath fileTree(dir: wlpDir+'/lib', include: '*.jar')
+        classpath 'net.wasdev.wlp.gradle.plugins:liberty-gradle-plugin:1.1-SNAPSHOT'
+        classpath fileTree(dir: installDir+'/bin/tools', include: 'ws-server.jar')
+        classpath fileTree(dir: installDir+'/dev/spi/ibm', include: '*.jar')
+        classpath fileTree(dir: installDir+'/lib', include: '*.jar')
     }
 }
 
@@ -90,11 +90,11 @@ dependencies {
 libertyCreate << {
     exec {
         environment 'WLP_USER_DIR', "${buildDir}/wlp"
-        commandLine file("${wlpDir}/bin/featureManager" + (Os.isFamily(Os.FAMILY_WINDOWS) ? '.bat' : '')), 'install', configurations.features.singleFile
+        commandLine file("${installDir}/bin/featureManager" + (Os.isFamily(Os.FAMILY_WINDOWS) ? '.bat' : '')), 'install', configurations.features.singleFile
     }
 }
 
-task deployWar(overwrite: true) << {
+task deploy(overwrite: true) << {
     copy {
         from project.war.archivePath
         into "${buildDir}/wlp/servers/defaultServer/apps"
@@ -102,5 +102,6 @@ task deployWar(overwrite: true) << {
 }
 
 liberty {
-    wlpDir=project.wlpDir
+    installDir=project.installDir
+    userDir="${buildDir}/wlp"
 }

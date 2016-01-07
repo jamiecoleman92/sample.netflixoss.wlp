@@ -16,10 +16,10 @@ buildscript {
     }
 	
     dependencies {
-        classpath 'net.wasdev.wlp.gradle.plugins:liberty-gradle-plugin:1.0-SNAPSHOT'
-        classpath fileTree(dir: wlpDir+'/bin/tools', include: 'ws-server.jar')
-        classpath fileTree(dir: wlpDir+'/dev/spi/ibm', include: '*.jar')
-        classpath fileTree(dir: wlpDir+'/lib', include: '*.jar')
+        classpath 'net.wasdev.wlp.gradle.plugins:liberty-gradle-plugin:1.1-SNAPSHOT'
+        classpath fileTree(dir: installDir+'/bin/tools', include: 'ws-server.jar')
+        classpath fileTree(dir: installDir+'/dev/spi/ibm', include: '*.jar')
+        classpath fileTree(dir: installDir+'/lib', include: '*.jar')
     }
 }
 
@@ -31,10 +31,10 @@ dependencies {
     testCompile 'junit:junit:3.8.1'
 }
 
-test.dependsOn deployWar
+test.dependsOn deploy
 libertyStart.dependsOn libertyCreate
-deployWar.dependsOn libertyStart
-deployWar.dependsOn war
+deploy.dependsOn libertyStart
+deploy.dependsOn war
 
 libertyCreate << {
     copy {
@@ -54,13 +54,13 @@ dependencies {
 libertyCreate << {
     exec {
         environment 'WLP_USER_DIR', "${buildDir}/wlp"
-        commandLine file("${wlpDir}/bin/featureManager" + (Os.isFamily(Os.FAMILY_WINDOWS) ? '.bat' : '')), 'install', configurations.features.singleFile
+        commandLine file("${installDir}/bin/featureManager" + (Os.isFamily(Os.FAMILY_WINDOWS) ? '.bat' : '')), 'install', configurations.features.singleFile
     }
 }
 
 test.finalizedBy libertyStop
 
 liberty {
-	wlpDir=project.wlpDir
+	installDir=project.installDir
 	serverName=project.serverName
 }

@@ -5,7 +5,7 @@ This project creates a Liberty feature that packages a sub-set of the [Netflix O
 ## Building the Liberty feature
 
 1. Clone this repository.
-2. Modify the `wlpDir` property in `gradle.properties` to point to the root directory of a WebSphere Application Server Liberty Profile V8.5.5.2 installation. This can be obtained from http://wasdev.net.
+2. Modify the `installDir` property in `gradle.properties` to point to the root directory of a WebSphere Application Server Liberty Profile V8.5.5.2 installation. This can be obtained from http://wasdev.net.
 3. Ensure that you have a Java runtime on your path and then run the following Gradle command:
 
     ```bash
@@ -63,11 +63,11 @@ Deploying the WAR file `build\libs\ws-hystrix-event-stream-1.0.0.war` to a serve
 
 The sub-directory `ws-netflixoss-examples` contains some simple technology examples that demonstrate usage of each of the projects. To run the examples:
 
-1. Ensure that the `wlpDir` property in `gradle.properties` is set to point to the root directory of a WebSphere Application Server Liberty Profile V8.5.5.2 installation using Java 7.
+1. Ensure that the `installDir` property in `gradle.properties` is set to point to the root directory of a WebSphere Application Server Liberty Profile V8.5.5.2 installation using Java 7.
 2. Execute the following Gradle command in the `ws-netflixoss-examples` directory:
 
     ```bash
-    gradlew build libertyCreate deployWar libertyStart
+    gradlew build libertyCreate deploy libertyStart
     ```
 
 ### Archaius
