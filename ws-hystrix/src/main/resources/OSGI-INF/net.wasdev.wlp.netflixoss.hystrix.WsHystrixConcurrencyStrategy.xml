@@ -9,7 +9,7 @@
      <provide interface="com.netflix.hystrix.strategy.concurrency.HystrixConcurrencyStrategy" />
   </service>
   <reference interface="net.wasdev.wlp.netflixoss.hystrix.BlockingQueueFactory" name="blockingQueueFactory"
-      bind="setBlockingQueueFactory" unbind="unsetBlockingQueueFactory" />
+      bind="setBlockingQueueFactory"/>
   <reference interface="net.wasdev.wlp.netflixoss.hystrix.ThreadPoolExecutorFactory" name="threadPoolExecutorFactory"
-      bind="setThreadPoolExecutorFactory" unbind="unsetThreadPoolExecutorFactory" />
+      bind="setThreadPoolExecutorFactory"/>
 </scr:component>

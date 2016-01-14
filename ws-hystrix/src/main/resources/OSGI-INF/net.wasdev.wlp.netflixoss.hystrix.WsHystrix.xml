@@ -5,5 +5,5 @@
    <property name="service.vendor" type="String" value="IBM" />
    <reference interface="com.netflix.hystrix.strategy.concurrency.HystrixConcurrencyStrategy"
        name="HystrixConcurrencyStrategy"
-       bind="setHystrixConcurrencyStrategy" unbind="unsetHystrixConcurrencyStrategy" />
+       bind="setHystrixConcurrencyStrategy" />
 </scr:component>

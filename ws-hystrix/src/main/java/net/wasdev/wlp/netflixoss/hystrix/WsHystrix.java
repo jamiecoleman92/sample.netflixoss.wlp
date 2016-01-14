@@ -15,34 +15,13 @@
  */
 package net.wasdev.wlp.netflixoss.hystrix;
 
-import java.util.logging.Logger;
-
 import com.netflix.hystrix.strategy.HystrixPlugins;
 import com.netflix.hystrix.strategy.concurrency.HystrixConcurrencyStrategy;
 
 public class WsHystrix {
-    private static final String CLASSNAME = WsHystrix.class.getName();
-    private static final Logger LOGGER = Logger.getLogger(CLASSNAME);
-
-    void activate() {
-        LOGGER.entering(CLASSNAME, "activate");
-        LOGGER.exiting(CLASSNAME, "activate");
-    }
-
-    void deactivate() {
-        LOGGER.entering(CLASSNAME, "deactivate");
-        LOGGER.exiting(CLASSNAME, "deactivate");
-    }
 
     void setHystrixConcurrencyStrategy(HystrixConcurrencyStrategy concurrencyStrategy) {
-        LOGGER.entering(CLASSNAME, "setHystrixConcurrencyStrategy", concurrencyStrategy);
         HystrixPlugins.getInstance().registerConcurrencyStrategy(concurrencyStrategy);
-        LOGGER.exiting(CLASSNAME, "setHystrixConcurrencyStrategy");
     }
 
-    void unsetHystrixConcurrencyStrategy(HystrixConcurrencyStrategy concurrencyStrategy) {
-        LOGGER.entering(CLASSNAME, "unsetHystrixConcurrencyStrategy", concurrencyStrategy);
-        //The concurrencyStrategy can only be set, and then only once
-        LOGGER.exiting(CLASSNAME, "unsetHystrixConcurrencyStrategy");
-    }
 }

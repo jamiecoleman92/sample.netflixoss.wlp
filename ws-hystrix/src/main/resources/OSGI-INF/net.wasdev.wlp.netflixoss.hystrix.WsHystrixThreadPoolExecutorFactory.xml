@@ -7,5 +7,5 @@
       <provide interface="net.wasdev.wlp.netflixoss.hystrix.BlockingQueueFactory" />
    </service>
    <reference interface="java.util.concurrent.ExecutorService" name="executorService"
-       bind="setExecutorService" unbind="unsetExecutorService" />
+       bind="setExecutorService"/>
 </scr:component>
