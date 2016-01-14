@@ -1,4 +1,0 @@
-<server>
-    <wsHystrixExecutor managedExecutorServiceRef="hystrixManagedExecutorService" />
-    <managedExecutorService id="hystrixManagedExecutorService" />
-</server>
