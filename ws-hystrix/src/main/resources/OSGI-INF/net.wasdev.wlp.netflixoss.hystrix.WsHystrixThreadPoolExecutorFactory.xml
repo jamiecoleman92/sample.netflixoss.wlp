@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="net.wasdev.wlp.netflixoss.hystrix.WsHystrixThreadPoolExecutorFactory">
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="net.wasdev.wlp.netflixoss.hystrix.WsHystrixThreadPoolExecutorFactory" configuration-policy="ignore">
    <implementation class="net.wasdev.wlp.netflixoss.hystrix.WsHystrixThreadPoolExecutorFactory" />
    <property name="service.vendor" type="String" value="IBM" />
    <service>
@@ -7,6 +7,5 @@
       <provide interface="net.wasdev.wlp.netflixoss.hystrix.BlockingQueueFactory" />
    </service>
    <reference interface="java.util.concurrent.ExecutorService" name="executorService"
-       cardinality="1..1" policy="static" target="(id=not_defined_here_-_see_metatype)"
-       bind="setExecutorService" unbind="unsetExecutorService" />
+       bind="setExecutorService"/>
 </scr:component>

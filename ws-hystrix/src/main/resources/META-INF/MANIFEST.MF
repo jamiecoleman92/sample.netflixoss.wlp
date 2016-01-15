@@ -35,4 +35,4 @@ Service-Component: OSGI-INF/net.wasdev.wlp.netflixoss.hystrix.WsHystrixConcurren
  OSGI-INF/net.wasdev.wlp.netflixoss.hystrix.WsHystrix.xml
 Bundle-SymbolicName: ws-hystrix
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-IBM-Default-Config: OSGI-INF/wlp/defaultInstances.xml
+

@@ -17,7 +17,6 @@ package net.wasdev.wlp.netflixoss.hystrix;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.RejectedExecutionException;
@@ -25,7 +24,6 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
@@ -33,31 +31,11 @@ import java.util.logging.Logger;
 
 
 public class WsHystrixThreadPoolExecutorFactory implements ThreadPoolExecutorFactory, BlockingQueueFactory {
-    private static final String CLASSNAME = WsHystrixThreadPoolExecutorFactory.class.getName();
-    private static final Logger LOGGER = Logger.getLogger(CLASSNAME);
 
-    void activate() {
-        LOGGER.entering(CLASSNAME, "activate");
-        LOGGER.exiting(CLASSNAME, "activate");
-    }
-
-    void deactivate() {
-        LOGGER.entering(CLASSNAME, "deactivate");
-        LOGGER.exiting(CLASSNAME, "deactivate");
-    }
-
-    ExecutorService executorService;
+    private ExecutorService executorService;
 
     void setExecutorService(ExecutorService executorService) {
-        LOGGER.entering(CLASSNAME, "setExecutorService", executorService);
         this.executorService = executorService;
-        LOGGER.exiting(CLASSNAME, "setExecutorService");
-    }
-
-    void unsetExecutorService(ExecutorService executorService) {
-        LOGGER.entering(CLASSNAME, "unsetExecutorService", executorService);
-        this.executorService = null;
-        LOGGER.exiting(CLASSNAME, "unsetExecutorService");
     }
 
     @Override
@@ -68,12 +46,7 @@ public class WsHystrixThreadPoolExecutorFactory implements ThreadPoolExecutorFac
     @Override
     public ThreadPoolExecutor createThreadPoolExecutor(int corePoolSize, int maximumPoolSize,
             int keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
-        LOGGER.entering(CLASSNAME, "createThreadPoolExecutor");
-        try {
-            return new WsHystrixThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, executorService);
-        } finally {
-            LOGGER.exiting(CLASSNAME, "createThreadPoolExecutor");
-        }
+        return new WsHystrixThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, executorService);
     }
 
     private static final class WsHystrixThreadPoolExecutor extends ThreadPoolExecutor {

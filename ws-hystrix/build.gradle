@@ -1,3 +1,4 @@
+apply plugin: 'eclipse'
 apply plugin: 'java'
 defaultTasks 'clean', 'jar'
 
@@ -38,8 +39,6 @@ dependencies {
 
 dependencies {
     compile 'com.netflix.hystrix:hystrix-core:1.4.0-RC5'
-    compile 'org.osgi:org.osgi.core:5.0.0'
-    compile 'org.osgi:org.osgi.compendium:5.0.0'
 }
 
 // Export jar output as artifact on bundle configuration
